@@ -1,10 +1,19 @@
-# ROS 2 colcon 워크스페이스 .gitignore
+# ROS 2 colcon 워크스페이스 및 C++ 개발용 .gitignore
 
-# 빌드 결과물
+# 빌드 시스템이 생성하는 결과물 디렉토리
 build/
 install/
 log/
 
-# Python 임시 파일
+# Python 관련 임시 파일 및 캐시
 *.pyc
 __pycache__/
+
+# IDE 및 에디터 임시 파일
+*~
+*.swp
+.vscode/
+
+# 운영체제별 임시 파일
+.DS_Store
+Thumbs.db
