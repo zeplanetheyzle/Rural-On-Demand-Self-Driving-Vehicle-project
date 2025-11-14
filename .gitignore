@@ -1,0 +1,10 @@
+# ROS 2 colcon 워크스페이스 .gitignore
+
+# 빌드 결과물
+build/
+install/
+log/
+
+# Python 임시 파일
+*.pyc
+__pycache__/
