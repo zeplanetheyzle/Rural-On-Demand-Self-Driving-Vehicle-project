@@ -3,32 +3,17 @@
 <package format="3">
   <name>my_turtle_controller_cpp</name>
   <version>0.0.1</version>
-  <description>중간 과제 제출용: 거북이 제어 노드 (C++)</description>
+  <description>농촌 온디맨드 차량: TurtleBot3 LiDAR 기반 벽 회피 노드 (C++)</description>
   <maintainer email="student@todo.todo">student</maintainer>
   <license>Apache License 2.0</license>
 
-  <!-- 빌드 도구는 ament_cmake 입니다 -->
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <!-- 
-    [여기가 수정된 핵심!] 
-    <depend> 태그 대신 build와 exec 의존성을 명확히 분리합니다. 
-  -->
-
-  <!-- 빌드할 때 필요한 패키지들 -->
   <build_depend>rclcpp</build_depend>
   <build_depend>geometry_msgs</build_depend>
-  <build_depend>turtlesim</build_depend>
-
-  <!-- 실행할 때 필요한 패키지들 -->
-  <exec_depend>rclcpp</exec_depend>
+  <build_depend>sensor_msgs</build_depend>  <exec_depend>rclcpp</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
-  <exec_depend>turtlesim</exec_depend>
-  
-  <!-- [여기까지] -->
-
-  <!-- 테스트(Linter)를 위한 의존성 -->
-  <test_depend>ament_lint_auto</test_depend>
+  <exec_depend>sensor_msgs</exec_depend>  <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
