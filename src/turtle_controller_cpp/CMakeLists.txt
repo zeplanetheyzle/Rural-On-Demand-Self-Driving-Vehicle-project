@@ -9,50 +9,30 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(turtlesim REQUIRED) # 벽 감지에 필요한 Pose 메시지를 위해 필수
+find_package(turtlesim REQUIRED)
 
 # --- 1. draw_square_node 빌드 설정 ---
-add_executable(
-  draw_square_node
-  src/draw_square.cpp
-)
-ament_target_dependencies(
-  draw_square_node
-  rclcpp
-  geometry_msgs
-)
-install(
-  TARGETS draw_square_node
-  DESTINATION lib/${PROJECT_NAME}
-)
+add_executable(draw_square_node src/draw_square.cpp)
+ament_target_dependencies(draw_square_node rclcpp geometry_msgs)
+install(TARGETS draw_square_node DESTINATION lib/${PROJECT_NAME})
 
-# --- 2. wall_avoider_node (장애물 멈춤) 빌드 설정 ---
-add_executable(
-  wall_avoider_node
-  src/wall_avoider.cpp
-)
-ament_target_dependencies(
-  wall_avoider_node
-  rclcpp
-  geometry_msgs
-  turtlesim # Pose 메시지 사용
-)
-install(
-  TARGETS wall_avoider_node
-  DESTINATION lib/${PROJECT_NAME}
-)
+# --- 2. wall_avoider_node 빌드 설정 (벽 회피) ---
+add_executable(wall_avoider_node src/wall_avoider.cpp)
+ament_target_dependencies(wall_avoider_node rclcpp geometry_msgs turtlesim)
+install(TARGETS wall_avoider_node DESTINATION lib/${PROJECT_NAME})
+
+# --- 3. turtle_stopper_node 빌드 설정 (단순 멈춤 로직) ---
+# stop_node.cpp를 stop_node라는 실행 파일로 등록합니다.
+add_executable(stop_node src/stop_node.cpp)
+ament_target_dependencies(stop_node rclcpp geometry_msgs turtlesim)
+install(TARGETS stop_node DESTINATION lib/${PROJECT_NAME})
 
 # 패키지 정보 파일 설치
-install(
-  FILES package.xml
-  DESTINATION share/${PROJECT_NAME}
-)
+install(FILES package.xml DESTINATION share/${PROJECT_NAME})
 
-# 테스트 설정 (선택 사항)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# 의존성 내보내기 및 패키지 마무리
 ament_package()
